@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { ArrowRight, BadgeCheck, BriefcaseBusiness, Building2, Compass, Handshake, Mail, Phone, ShieldCheck, Sparkles, TrendingUp, GraduationCap } from 'lucide-react'
@@ -8,8 +8,7 @@ import PartnerSlider from '../components/home/PartnerSlider'
 import FormationCard from '../components/home/FormationCard'
 import BlogCard from '../components/blog/BlogCard'
 import { services } from '../data/services'
-import { formations } from '../data/formations'
-import { posts } from '../data/blog'
+import { getPublishedBlogs, getPublishedFormations, saveContactMessage } from '../services/contentService'
 import { stats } from '../data/stats'
 
 const heroCards = [
@@ -26,12 +25,26 @@ const serviceHighlights = [
 
 const Home = () => {
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [formations, setFormations] = useState([])
+  const [posts, setPosts] = useState([])
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
-  const onSubmit = (data) => {
-    setSubmitted(true)
-    reset()
-    console.info('Contact form submitted', data)
+  useEffect(() => {
+    getPublishedFormations().then(setFormations).catch(() => setSubmitError('Les formations sont temporairement indisponibles.'))
+    getPublishedBlogs().then(setPosts).catch(() => setSubmitError('Les articles sont temporairement indisponibles.'))
+  }, [])
+
+  const onSubmit = async (data) => {
+    setSubmitted(false)
+    setSubmitError('')
+    try {
+      await saveContactMessage(data)
+      setSubmitted(true)
+      reset()
+    } catch (error) {
+      setSubmitError(error.message)
+    }
   }
 
   return (
@@ -132,7 +145,7 @@ const Home = () => {
               </div>
             </div>
             <div className="grid gap-6 lg:grid-cols-3">
-              {services.slice(0, 3).map((service, index) => {
+              {services.slice(0, 3).map((service) => {
                 const Icon = { ShieldCheck, GraduationCap, Handshake }[service.icon]
                 return (
                   <motion.article key={service.title} whileHover={{ y: -6, scale: 1.01 }} className="rounded-[1.75rem] border border-[#8A4B23]/10 bg-white p-8 shadow-[0_25px_70px_-35px_rgba(31,41,55,0.35)]">
@@ -196,8 +209,8 @@ const Home = () => {
         <section className="px-6 py-20 lg:px-8">
           <div className="mx-auto max-w-7xl rounded-[2rem] border border-[#8A4B23]/10 bg-[#FAF7F2] p-8 shadow-[0_30px_100px_-40px_rgba(31,41,55,0.2)] lg:p-12">
             <div className="grid gap-8 lg:grid-cols-4">
-              {stats.map((stat, index) => (
-                <motion.div key={stat.label} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.4, delay: index * 0.1 }} className="rounded-[1.5rem] bg-white p-6 text-center shadow-sm">
+              {stats.map((stat) => (
+                <motion.div key={stat.label} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.4 }} className="rounded-[1.5rem] bg-white p-6 text-center shadow-sm">
                   <p className="text-4xl font-extrabold text-[#8A4B23]">{stat.value}</p>
                   <p className="mt-3 text-sm leading-7 text-[#1F2937]/70">{stat.label}</p>
                 </motion.div>
@@ -215,7 +228,7 @@ const Home = () => {
               </div>
             </div>
             <div className="grid gap-6 md:grid-cols-2">
-              {formations.map((formation) => <FormationCard key={formation.title} formation={formation} />)}
+              {formations.length ? formations.map((formation) => <FormationCard key={formation.id || formation.title} formation={formation} />) : <p className="text-sm text-[#1F2937]/60">Aucune formation publiée.</p>}
             </div>
           </div>
         </section>
@@ -229,7 +242,7 @@ const Home = () => {
               </div>
             </div>
             <div className="grid gap-6 lg:grid-cols-3">
-              {posts.map((post) => <BlogCard key={post.title} post={post} />)}
+              {posts.length ? posts.map((post) => <BlogCard key={post.id || post.title} post={post} />) : <p className="text-sm text-[#1F2937]/60">Aucun article publié.</p>}
             </div>
           </div>
         </section>
@@ -267,6 +280,7 @@ const Home = () => {
               <div className="flex flex-wrap items-center gap-4">
                 <button type="submit" className="rounded-full bg-[#8A4B23] px-6 py-3 font-semibold text-white transition hover:bg-[#6D3918]">Envoyer</button>
                 {submitted && <p className="text-sm font-medium text-[#8A4B23]">Merci, votre demande a bien été enregistrée.</p>}
+                {submitError && <p className="text-sm font-medium text-[#8A4B23]">{submitError}</p>}
               </div>
             </form>
           </div>

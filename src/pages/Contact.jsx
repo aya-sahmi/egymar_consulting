@@ -1,9 +1,24 @@
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useForm } from 'react-hook-form'
+import { useSearchParams } from 'react-router-dom'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
+import { saveContactMessage } from '../services/contentService'
 
 const Contact = () => {
+  const [searchParams] = useSearchParams()
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({ defaultValues: { message: '' } })
+  const [feedback, setFeedback] = useState('')
+  useEffect(() => {
+    const formation = searchParams.get('formation')
+    if (formation) reset({ message: `Bonjour, je souhaite demander la formation ${formation}.` })
+  }, [reset, searchParams])
+  const onSubmit = async (values) => {
+    setFeedback('')
+    try { await saveContactMessage(values); reset(); setFeedback('Merci, votre message a bien été enregistré.') } catch (error) { setFeedback(error.message) }
+  }
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-[#1F2937]">
       <Navbar />
@@ -33,15 +48,15 @@ const Contact = () => {
               </div>
             </div>
             <div>
-              <div className="mb-6 h-64 rounded-[1.5rem] border border-[#8A4B23]/10 bg-[#FAF7F2] p-6 text-sm text-[#1F2937]/70">Carte Google Maps placeholder</div>
-              <form className="space-y-4">
+              <div className="mb-6 overflow-hidden rounded-[1.5rem] border border-[#8A4B23]/10 bg-[#FAF7F2]"><iframe title="EGYMAR Consulting à Agadir" className="h-64 w-full border-0" src="https://www.google.com/maps?q=39%20Boulevard%20Abderrahim%20Bouabid%2C%20Agadir%2C%20Maroc&output=embed" loading="lazy" /><a href="https://www.google.com/maps/search/?api=1&query=39%20Boulevard%20Abderrahim%20Bouabid%2C%20Agadir%2C%20Maroc" target="_blank" rel="noreferrer" className="block p-4 text-sm font-semibold text-[#8A4B23]">Ouvrir dans Google Maps</a></div>
+              <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid gap-4 md:grid-cols-2">
-                  <input className="rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Nom" />
-                  <input className="rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Téléphone" />
+                  <div><input {...register('name', { required: 'Le nom est requis' })} className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Nom" />{errors.name && <p className="mt-1 text-xs text-[#8A4B23]">{errors.name.message}</p>}</div>
+                  <div><input {...register('phone')} className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Téléphone" /></div>
                 </div>
-                <input className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Email" />
-                <textarea className="min-h-32 w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Message" />
-                <motion.button whileHover={{ y: -2 }} type="button" className="rounded-full bg-[#8A4B23] px-6 py-3 font-semibold text-white transition hover:bg-[#6D3918]">Envoyer</motion.button>
+                <div><input {...register('email', { required: 'L’email est requis' })} className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Email" />{errors.email && <p className="mt-1 text-xs text-[#8A4B23]">{errors.email.message}</p>}</div>
+                <div><textarea {...register('message', { required: 'Le message est requis' })} className="min-h-32 w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Message" />{errors.message && <p className="mt-1 text-xs text-[#8A4B23]">{errors.message.message}</p>}</div>
+                <div className="flex flex-wrap items-center gap-4"><motion.button whileHover={{ y: -2 }} disabled={isSubmitting} type="submit" className="rounded-full bg-[#8A4B23] px-6 py-3 font-semibold text-white transition hover:bg-[#6D3918] disabled:opacity-60">{isSubmitting ? 'Envoi...' : 'Envoyer'}</motion.button>{feedback && <p className="text-sm text-[#8A4B23]">{feedback}</p>}</div>
               </form>
             </div>
           </div>

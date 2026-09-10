@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const FormationCard = ({ formation }) => {
   return (
@@ -13,7 +14,8 @@ const FormationCard = ({ formation }) => {
         <span className="text-sm text-[#1F2937]/70">{formation.duration}</span>
       </div>
       <h3 className="text-xl font-semibold text-[#1F2937]">{formation.title}</h3>
-      <p className="mt-3 text-sm leading-7 text-[#1F2937]/75">{formation.date}</p>
+      <p className="mt-3 text-sm leading-7 text-[#1F2937]/75">{formation.date || formation.objective}</p>
+      {formation.slug && <Link to={`/formations/${formation.slug}`} className="mt-5 inline-flex font-semibold text-[#8A4B23]">Voir la formation</Link>}
     </motion.article>
   )
 }
