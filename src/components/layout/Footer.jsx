@@ -1,6 +1,8 @@
 import Logo from '../common/Logo'
 import { Mail, Phone, MapPin } from 'lucide-react'
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import CookieConsent from '../common/CookieConsent'
 
 const Footer = () => {
   return (
@@ -38,6 +40,16 @@ const Footer = () => {
               </a>
             ))}
           </div>
+        </div>
+        <div className="lg:col-span-4">
+          <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8A4B23]">Informations</h3>
+          <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/70">
+            <li><Link to="/mentions-legales" className="transition hover:text-white">Mentions légales</Link></li>
+            <li><Link to="/politique-confidentialite" className="transition hover:text-white">Politique de confidentialité</Link></li>
+            <li><Link to="/cgv" className="transition hover:text-white">Conditions Générales de Vente</Link></li>
+            <li><Link to="/faq" className="transition hover:text-white">FAQ</Link></li>
+            <li><CookieConsent /></li>
+          </ul>
         </div>
       </div>
       <div className="border-t border-white/10 px-6 py-5 text-center text-sm text-white/50 lg:px-8">

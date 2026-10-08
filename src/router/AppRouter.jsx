@@ -15,6 +15,7 @@ import FormationsAdmin from '../pages/admin/FormationsAdmin'
 import FormationEditor from '../pages/admin/FormationEditor'
 import ProtectedRoute from '../components/admin/ProtectedRoute'
 import AdminLayout from '../layouts/AdminLayout'
+import LegalContentPage from '../pages/LegalContentPage'
 
 const AppRouter = () => {
   return (
@@ -28,6 +29,10 @@ const AppRouter = () => {
         <Route path="/formations" element={<Formations />} />
         <Route path="/formations/:slug" element={<FormationArticle />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/mentions-legales" element={<LegalContentPage documentKey="mentions" />} />
+        <Route path="/politique-confidentialite" element={<LegalContentPage documentKey="privacy" />} />
+        <Route path="/cgv" element={<LegalContentPage documentKey="terms" />} />
+        <Route path="/faq" element={<LegalContentPage documentKey="faq" />} />
         <Route path="/admin/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
           <Route element={<AdminLayout />}>
