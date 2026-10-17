@@ -24,12 +24,12 @@ const Contact = () => {
       <Navbar />
       <main>
         <section className="px-6 pb-20 pt-32 lg:px-8 lg:pt-40">
-          <div className="mx-auto grid max-w-7xl gap-8 rounded-[2.5rem] border border-[#8A4B23]/10 bg-white p-8 shadow-[0_30px_100px_-40px_rgba(31,41,55,0.3)] lg:grid-cols-[0.9fr_1.1fr] lg:p-14">
-            <div>
+          <div className="mx-auto grid max-w-7xl gap-8 rounded-[2.5rem] border border-[#8A4B23]/10 bg-white p-5 shadow-[0_30px_100px_-40px_rgba(31,41,55,0.3)] sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-14">
+            <div className="min-w-0">
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#8A4B23]">Contact</p>
               <h1 className="mt-4 text-4xl font-semibold text-[#1F2937] sm:text-5xl">Nous sommes à votre écoute</h1>
               <p className="mt-6 text-lg leading-8 text-[#1F2937]/75">Pour un échange rapide sur vos besoins, un devis ou une mission de conseil, contactez-nous directement.</p>
-              <div className="mt-8 space-y-4 rounded-[1.5rem] border border-[#8A4B23]/10 bg-[#FAF7F2] p-6">
+              <div className="mt-8 space-y-4 rounded-[1.5rem] border border-[#8A4B23]/10 bg-[#FAF7F2] p-4 sm:p-6">
                 <div className="flex items-start gap-3">
                   <MapPin size={18} className="mt-1 text-[#8A4B23]" />
                   <div>
@@ -43,11 +43,11 @@ const Contact = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail size={18} className="text-[#8A4B23]" />
-                  <a href="mailto:Ka.egymarconsulting@gmail.com" className="text-sm text-[#1F2937]/70">Ka.egymarconsulting@gmail.com</a>
+                  <a href="mailto:Ka.egymarconsulting@gmail.com" className="min-w-0 break-all text-sm text-[#1F2937]/70">Ka.egymarconsulting@gmail.com</a>
                 </div>
               </div>
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="mb-6 overflow-hidden rounded-[1.5rem] border border-[#8A4B23]/10 bg-[#FAF7F2]"><iframe title="EGYMAR Consulting à Agadir" className="h-64 w-full border-0" src="https://www.google.com/maps?q=39%20Boulevard%20Abderrahim%20Bouabid%2C%20Agadir%2C%20Maroc&output=embed" loading="lazy" /><a href="https://www.google.com/maps/search/?api=1&query=39%20Boulevard%20Abderrahim%20Bouabid%2C%20Agadir%2C%20Maroc" target="_blank" rel="noreferrer" className="block p-4 text-sm font-semibold text-[#8A4B23]">Ouvrir dans Google Maps</a></div>
               <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid gap-4 md:grid-cols-2">

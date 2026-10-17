@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/85 shadow-[0_10px_40px_-20px_rgba(31,41,55,0.35)] backdrop-blur-xl' : 'bg-transparent'}`}>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
         <Logo />
         <div className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
@@ -38,13 +38,13 @@ const Navbar = () => {
             Demander un devis
           </a>
         </div>
-        <button className="rounded-full border border-[#8A4B23]/20 p-2 text-[#8A4B23] md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+        <button className="shrink-0 rounded-full border border-[#8A4B23]/20 p-2 text-[#8A4B23] md:hidden" onClick={() => setIsOpen(!isOpen)} aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={isOpen} aria-controls="mobile-navigation">
           {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
       <AnimatePresence>
         {isOpen && (
-          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="border-t border-[#8A4B23]/10 bg-white/95 px-6 py-5 shadow-xl md:hidden">
+          <motion.div id="mobile-navigation" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="border-t border-[#8A4B23]/10 bg-white/95 px-4 py-5 shadow-xl sm:px-6 md:hidden">
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <a key={item.href} href={item.href} className="text-sm font-medium text-[#1F2937]" onClick={() => setIsOpen(false)}>

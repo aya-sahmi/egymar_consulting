@@ -27,7 +27,7 @@ const Footer = () => {
           <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8A4B23]">Coordonnées</h3>
           <ul className="mt-5 space-y-3 text-sm text-white/70">
             <li className="flex items-center gap-3"><Phone size={16} className="text-[#8A4B23]" /> +212 661 94 60 77</li>
-            <li className="flex items-center gap-3"><Mail size={16} className="text-[#8A4B23]" /> Ka.egymarconsulting@gmail.com</li>
+            <li className="flex min-w-0 items-center gap-3"><Mail size={16} className="shrink-0 text-[#8A4B23]" /><span className="min-w-0 break-all">Ka.egymarconsulting@gmail.com</span></li>
             <li className="flex items-center gap-3"><MapPin size={16} className="text-[#8A4B23]" /> 39 Boulevard Abderrahim Bouabid, Agadir</li>
           </ul>
         </div>

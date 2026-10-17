@@ -255,7 +255,7 @@ const Home = () => {
               <p className="mt-4 text-sm leading-7 text-[#1F2937]/70">Un accompagnement sur mesure, pensé pour vos enjeux de conformité, d’audit et de transformation.</p>
               <div className="mt-8 space-y-3 text-sm text-[#1F2937]/70">
                 <p className="flex items-center gap-3"><Phone size={16} className="text-[#8A4B23]" /> +212 661 94 60 77</p>
-                <p className="flex items-center gap-3"><Mail size={16} className="text-[#8A4B23]" /> Ka.egymarconsulting@gmail.com</p>
+                <p className="flex min-w-0 items-center gap-3"><Mail size={16} className="shrink-0 text-[#8A4B23]" /><span className="min-w-0 break-all">Ka.egymarconsulting@gmail.com</span></p>
               </div>
             </div>
             <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
