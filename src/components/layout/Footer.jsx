@@ -43,12 +43,12 @@ const Footer = () => {
         </div>
         <div className="lg:col-span-4">
           <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8A4B23]">Informations</h3>
-          <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/70">
-            <li><Link to="/mentions-legales" className="transition hover:text-white">Mentions légales</Link></li>
-            <li><Link to="/politique-confidentialite" className="transition hover:text-white">Politique de confidentialité</Link></li>
-            <li><Link to="/cgv" className="transition hover:text-white">Conditions Générales de Vente</Link></li>
-            <li><Link to="/faq" className="transition hover:text-white">FAQ</Link></li>
-            <li><CookieConsent /></li>
+          <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-md text-white/70">
+            <li><Link to="/mentions-legales" className="transition hover:text-white underline font-bold">Mentions légales</Link></li>
+            <li><Link to="/politique-confidentialite" className="transition hover:text-white underline font-bold">Politique de confidentialité</Link></li>
+            <li><Link to="/cgv" className="transition hover:text-white underline font-bold">Conditions Générales de Vente</Link></li>
+            <li><Link to="/faq" className="transition hover:text-white underline font-bold">FAQ</Link></li>
+            <li className="transition hover:text-white underline font-bold"><CookieConsent /></li>
           </ul>
         </div>
       </div>

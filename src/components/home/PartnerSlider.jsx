@@ -18,7 +18,12 @@ const PartnerSlider = () => {
         >
           {duplicatedPartners.map((partner, index) => (
             <div key={`${partner}-${index}`} className="min-w-[220px] rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-6 py-5 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:scale-[1.02]">
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#1F2937]">{partner}</p>
+              <img
+  src={partner.image}
+  alt={partner.name}
+  className="h-16 w-full object-contain"
+  loading="lazy"
+/>
             </div>
           ))}
         </motion.div>
