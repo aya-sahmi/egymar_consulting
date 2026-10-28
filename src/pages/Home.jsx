@@ -28,7 +28,7 @@ const Home = () => {
   const [submitError, setSubmitError] = useState('')
   const [formations, setFormations] = useState([])
   const [posts, setPosts] = useState([])
-  const { register, handleSubmit, formState: { errors }, reset } = useForm()
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({ defaultValues: { gdpr_consent: false } })
 
   useEffect(() => {
     getPublishedFormations().then(setFormations).catch(() => setSubmitError('Les formations sont temporairement indisponibles.'))
@@ -56,13 +56,13 @@ const Home = () => {
           <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <span className="inline-flex items-center rounded-full border border-[#8A4B23]/20 bg-white/80 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-[#8A4B23]">
-                <Sparkles className="mr-2 h-4 w-4" /> Cabinet de conseil & audit
+                <Sparkles className="mr-2 h-4 w-4" /> Cabinet de formation, conseil et audit
               </span>
               <h1 className="mt-6 text-4xl font-extrabold leading-tight text-[#1F2937] sm:text-5xl lg:text-6xl">
-                Votre partenaire de confiance en <span className="text-[#8A4B23]">Conseil & Audit</span>
+                Votre partenaire de confiance en <span className="text-[#8A4B23]">formation, conseil &amp; audit</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-[#1F2937]/75">
-                EGYMAR Consulting accompagne les entreprises dans leurs démarches de conseil, d’audit, de formation et de mise en place des systèmes de management conformes aux standards internationaux.
+                Chez EGYMAR Consulting, nous vous aidons à structurer vos performances grâce à un accompagnement complet : conseil, audit, formation et mise en place de systèmes de management alignés sur mesure selon divers référentiels ISO 17025, 9001, 14001, 45001.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <a href="/services" className="rounded-full bg-[#8A4B23] px-6 py-3 font-semibold text-white transition hover:bg-[#6D3918]">Découvrir nos services</a>
@@ -162,11 +162,11 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="px-6 py-20 lg:px-8">
+        <section className="px-6 py-12 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3">
-            <div className="rounded-[2rem] border border-[#8A4B23]/10 bg-[#1F2937] p-8 text-white shadow-[0_30px_100px_-40px_rgba(31,41,55,0.6)]">
+            <div className="rounded-[2rem] border border-[#8A4B23]/10 bg-white p-8 text-[#1F2937] shadow-[0_30px_100px_-40px_rgba(31,41,55,0.2)]">
               <h3 className="text-2xl font-semibold">Notre mission</h3>
-              <p className="mt-4 text-sm leading-7 text-white/70">Accompagner les entreprises dans la mise en œuvre des systèmes qualité avec pédagogie et exigence.</p>
+              <p className="mt-4 text-sm leading-7 text-[#1F2937]/70">Accompagner les entreprises dans la mise en œuvre des systèmes qualité avec pédagogie et exigence.</p>
             </div>
             <div className="rounded-[2rem] border border-[#8A4B23]/10 bg-white p-8 shadow-[0_30px_100px_-40px_rgba(31,41,55,0.2)]">
               <h3 className="text-2xl font-semibold text-[#1F2937]">Notre vision</h3>
@@ -179,7 +179,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="px-6 py-20 lg:px-8">
+        <section className="px-6 py-12 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#8A4B23]">Nos valeurs</p>
@@ -210,9 +210,9 @@ const Home = () => {
           <div className="mx-auto max-w-7xl rounded-[2rem] border border-[#8A4B23]/10 bg-[#FAF7F2] p-8 shadow-[0_30px_100px_-40px_rgba(31,41,55,0.2)] lg:p-12">
             <div className="grid gap-8 lg:grid-cols-4">
               {stats.map((stat) => (
-                <motion.div key={stat.label} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.4 }} className="rounded-[1.5rem] bg-white p-6 text-center shadow-sm">
-                  <p className="text-4xl font-extrabold text-[#8A4B23]">{stat.value}</p>
-                  <p className="mt-3 text-sm leading-7 text-[#1F2937]/70">{stat.label}</p>
+                <motion.div key={stat.label} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.4 }} className="rounded-[1.5rem] bg-white p-4 text-center shadow-sm">
+                  <p className="text-3xl font-extrabold text-[#8A4B23]">{stat.value}</p>
+                  <p className="mt-2 text-sm leading-6 text-[#1F2937]/70">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -254,7 +254,7 @@ const Home = () => {
               <h2 className="mt-3 text-3xl font-semibold text-[#1F2937] sm:text-4xl">Discutons de votre besoin</h2>
               <p className="mt-4 text-sm leading-7 text-[#1F2937]/70">Un accompagnement sur mesure, pensé pour vos enjeux de conformité, d’audit et de transformation.</p>
               <div className="mt-8 space-y-3 text-sm text-[#1F2937]/70">
-                <p className="flex items-center gap-3"><Phone size={16} className="text-[#8A4B23]" /> +212 661 94 60 77</p>
+                <p className="flex items-center gap-3"><Phone size={16} className="text-[#8A4B23]" /> +212 661 94 60 77 · +212 666 82 00 44</p>
                 <p className="flex min-w-0 items-center gap-3"><Mail size={16} className="shrink-0 text-[#8A4B23]" /><span className="min-w-0 break-all">Ka.egymarconsulting@gmail.com</span></p>
               </div>
             </div>
@@ -263,6 +263,9 @@ const Home = () => {
                 <div>
                   <input {...register('name', { required: 'Le nom est requis' })} className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none ring-0" placeholder="Nom" />
                   {errors.name && <p className="mt-2 text-sm text-[#8A4B23]">{errors.name.message}</p>}
+                </div>
+                <div>
+                  <input {...register('company')} className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none ring-0" placeholder="Entreprise" />
                 </div>
                 <div>
                   <input {...register('phone', { required: 'Le téléphone est requis' })} className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none ring-0" placeholder="Téléphone" />
@@ -277,6 +280,14 @@ const Home = () => {
                 <textarea {...register('message', { required: 'Le message est requis' })} className="min-h-32 w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none ring-0" placeholder="Message" />
                 {errors.message && <p className="mt-2 text-sm text-[#8A4B23]">{errors.message.message}</p>}
               </div>
+              <div>
+                <label className="flex items-start gap-3 text-sm leading-6 text-[#1F2937]/70">
+                  <input type="checkbox" {...register('gdpr_consent', { required: 'Votre consentement est requis' })} className="mt-1 h-4 w-4 shrink-0 accent-[#8A4B23]" />
+                  <span>J’accepte que mes données personnelles soient utilisées pour traiter ma demande, conformément à la <a href="/politique-confidentialite" className="font-semibold text-[#8A4B23] underline">politique de confidentialité</a>.</span>
+                </label>
+                {errors.gdpr_consent && <p className="mt-2 text-sm text-[#8A4B23]">{errors.gdpr_consent.message}</p>}
+              </div>
+              <p className="text-sm leading-6 text-[#1F2937]/70">Nous répondrons à votre message dans les plus brefs délais.</p>
               <div className="flex flex-wrap items-center gap-4">
                 <button type="submit" className="rounded-full bg-[#8A4B23] px-6 py-3 font-semibold text-white transition hover:bg-[#6D3918]">Envoyer</button>
                 {submitted && <p className="text-sm font-medium text-[#8A4B23]">Merci, votre demande a bien été enregistrée.</p>}

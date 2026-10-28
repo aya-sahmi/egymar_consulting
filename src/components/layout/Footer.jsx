@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="border-t border-[#8A4B23]/20 bg-gradient-to-br from-[#111111] via-[#1C1A18] to-[#7A5A36] text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1fr] lg:px-8">
         <div>
-          <Logo />
+          <Logo light />
           <p className="mt-6 max-w-md text-sm leading-7 text-white/70">
             EGYMAR Consulting accompagne les organisations dans l’audit, le conseil, la qualité et la formation avec un regard premium et pragmatique.
           </p>
@@ -26,9 +26,9 @@ const Footer = () => {
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-[#8A4B23]">Coordonnées</h3>
           <ul className="mt-5 space-y-3 text-sm text-white/70">
-            <li className="flex items-center gap-3"><Phone size={16} className="text-[#8A4B23]" /> +212 661 94 60 77</li>
+            <li className="flex items-start gap-3"><Phone size={16} className="mt-1 shrink-0 text-[#8A4B23]" /><span>+212 661 94 60 77<br />+212 666 82 00 44</span></li>
             <li className="flex min-w-0 items-center gap-3"><Mail size={16} className="shrink-0 text-[#8A4B23]" /><span className="min-w-0 break-all">Ka.egymarconsulting@gmail.com</span></li>
-            <li className="flex items-center gap-3"><MapPin size={16} className="text-[#8A4B23]" /> 39 Boulevard Abderrahim Bouabid, Agadir</li>
+            <li className="flex items-start gap-3"><MapPin size={16} className="mt-1 shrink-0 text-[#8A4B23]" /><span>39 Boulevard Abderrahim Bouabid<br />2ème étage, Quartier El Wafa<br />Agadir</span></li>
           </ul>
         </div>
         <div>
@@ -46,6 +46,7 @@ const Footer = () => {
           <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-md text-white/70">
             <li><Link to="/mentions-legales" className="transition hover:text-white underline font-bold">Mentions légales</Link></li>
             <li><Link to="/politique-confidentialite" className="transition hover:text-white underline font-bold">Politique de confidentialité</Link></li>
+            <li><Link to="/politique-confidentialite#cookies" className="transition hover:text-white underline font-bold">Utilisation des Cookies</Link></li>
             <li><Link to="/cgv" className="transition hover:text-white underline font-bold">Conditions Générales de Vente</Link></li>
             <li><Link to="/faq" className="transition hover:text-white underline font-bold">FAQ</Link></li>
             <li className="transition hover:text-white underline font-bold"><CookieConsent /></li>

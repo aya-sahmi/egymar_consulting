@@ -46,9 +46,14 @@ create table if not exists public.contact_messages (
   name text not null,
   email text not null,
   phone text not null default '',
+  company text,
+  gdpr_consent boolean,
   message text not null,
   created_at timestamptz not null default now()
 );
+
+alter table public.contact_messages add column if not exists company text;
+alter table public.contact_messages add column if not exists gdpr_consent boolean;
 
 alter table public.admin_users enable row level security;
 alter table public.blogs enable row level security;

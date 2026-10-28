@@ -59,7 +59,11 @@ const LegalContentPage = ({ documentKey }) => {
   const [query, setQuery] = useState('')
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    if (window.location.hash) {
+      window.document.getElementById(window.location.hash.slice(1))?.scrollIntoView()
+    } else {
+      window.scrollTo(0, 0)
+    }
   }, [documentKey])
 
   const filteredCategories = useMemo(() => {
@@ -105,7 +109,7 @@ const LegalContentPage = ({ documentKey }) => {
           ) : (
             <article className="space-y-9 text-[15px] leading-7 text-[#1F2937]/85">
               {document.sections.map((section) => (
-                <section key={section.title}>
+                <section key={section.title} id={section.title === '7. Cookies' ? 'cookies' : undefined}>
                   <h2 className="mb-3 text-lg font-bold leading-7 text-[#1F2937]">{section.highlightedTitle ? <Highlight>{section.title}</Highlight> : section.title}</h2>
                   {section.blocks.map((block, index) => <DocumentBlock key={index} block={block} />)}
                 </section>

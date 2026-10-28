@@ -23,7 +23,7 @@ const Services = () => {
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#8A4B23]">Services</p>
               <h1 className="mt-4 text-4xl font-semibold text-[#1F2937] sm:text-5xl">Des prestations de conseil, audit et formation pensées pour chaque étape de votre maturité</h1>
-              <p className="mt-6 text-lg leading-8 text-[#1F2937]/75">Chaque intervention est construite autour de vos enjeux, du contexte de votre organisation et des attendus de vos parties prenantes.</p>
+              <p className="mt-6 text-lg leading-8 text-[#1F2937]/75">Nos interventions sur mesure, s’adaptent à vos enjeux, à votre contexte et aux attentes de vos parties prenantes.</p>
             </div>
             <div className="mt-10 grid gap-6 lg:grid-cols-3">
               {services.map((service) => {
@@ -35,7 +35,7 @@ const Services = () => {
                     </div>
                     <h3 className="mt-6 text-xl font-semibold text-[#1F2937]">{service.title}</h3>
                     <p className="mt-4 text-sm leading-7 text-[#1F2937]/70">{service.description}</p>
-                    <p className="mt-4 text-sm leading-7 text-[#1F2937]/60">{service.detail}</p>
+                    {service.detail && <p className="mt-4 text-sm leading-7 text-[#1F2937]/60">{service.detail}</p>}
                     <a href="/contact" className="mt-6 inline-flex items-center gap-2 font-semibold text-[#8A4B23]">Prendre rendez-vous <ArrowRight size={16} /></a>
                   </motion.article>
                 )

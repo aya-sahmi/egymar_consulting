@@ -1,21 +1,21 @@
 export const services = [
   {
     title: 'Audit',
-    description: 'Évaluation rigoureuse de vos processus, risques et conformité.',
+    description: "Diagnostic terrain, cartographie des risques et plan d'actions correctives — pour transformer chaque écart en levier de progrès mesurable.",
     icon: 'ShieldCheck',
-    detail: 'Audit interne, conformité réglementaire et cartographie des risques.'
+    detail: ''
   },
   {
     title: 'Formation',
-    description: 'Programmes de formation sur mesure pour renforcer les compétences.',
+    description: 'Des parcours pratiques, animés par des experts terrain, pour ancrer durablement les bons réflexes qualité dans vos équipes.',
     icon: 'GraduationCap',
-    detail: 'Formation qualité, management, audit et sensibilisation des équipes.'
+    detail: ''
   },
   {
     title: 'Accompagnement',
-    description: 'Un soutien opérationnel pour concrétiser vos objectifs stratégiques.',
+    description: 'Un appui opérationnel à chaque étape : mise en œuvre, suivi de la conformité et pilotage de vos objectifs stratégiques.',
     icon: 'Handshake',
-    detail: 'Mise en place de systèmes de management et accompagnement au changement.'
+    detail: ''
   },
   {
     title: 'Conseil',

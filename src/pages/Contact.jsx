@@ -9,11 +9,11 @@ import { saveContactMessage } from '../services/contentService'
 
 const Contact = () => {
   const [searchParams] = useSearchParams()
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({ defaultValues: { message: '' } })
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({ defaultValues: { message: '', company: '', gdpr_consent: false } })
   const [feedback, setFeedback] = useState('')
   useEffect(() => {
     const formation = searchParams.get('formation')
-    if (formation) reset({ message: `Bonjour, je souhaite demander la formation ${formation}.` })
+    if (formation) reset({ message: `Bonjour, je souhaite demander la formation ${formation}.`, company: '', gdpr_consent: false })
   }, [reset, searchParams])
   const onSubmit = async (values) => {
     setFeedback('')
@@ -34,7 +34,7 @@ const Contact = () => {
                   <MapPin size={18} className="mt-1 text-[#8A4B23]" />
                   <div>
                     <p className="font-semibold text-[#1F2937]">Adresse</p>
-                    <p className="mt-1 text-sm leading-7 text-[#1F2937]/70">39 Boulevard Abderrahim Bouabid<br />Quartier El Wafa<br />Agadir</p>
+                    <p className="mt-1 text-sm leading-7 text-[#1F2937]/70">39 Boulevard Abderrahim Bouabid<br />2ème étage<br />Quartier El Wafa<br />Agadir</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -54,8 +54,17 @@ const Contact = () => {
                   <div><input {...register('name', { required: 'Le nom est requis' })} className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Nom" />{errors.name && <p className="mt-1 text-xs text-[#8A4B23]">{errors.name.message}</p>}</div>
                   <div><input {...register('phone')} className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Téléphone" /></div>
                 </div>
+                <div><input {...register('company')} className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Entreprise" /></div>
                 <div><input {...register('email', { required: 'L’email est requis' })} className="w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Email" />{errors.email && <p className="mt-1 text-xs text-[#8A4B23]">{errors.email.message}</p>}</div>
                 <div><textarea {...register('message', { required: 'Le message est requis' })} className="min-h-32 w-full rounded-2xl border border-[#8A4B23]/10 bg-[#FAF7F2] px-4 py-3 outline-none" placeholder="Message" />{errors.message && <p className="mt-1 text-xs text-[#8A4B23]">{errors.message.message}</p>}</div>
+                <div>
+                  <label className="flex items-start gap-3 text-sm leading-6 text-[#1F2937]/70">
+                    <input type="checkbox" {...register('gdpr_consent', { required: 'Votre consentement est requis' })} className="mt-1 h-4 w-4 shrink-0 accent-[#8A4B23]" />
+                    <span>J’accepte que mes données personnelles soient utilisées pour traiter ma demande, conformément à la <a href="/politique-confidentialite" className="font-semibold text-[#8A4B23] underline">politique de confidentialité</a>.</span>
+                  </label>
+                  {errors.gdpr_consent && <p className="mt-1 text-xs text-[#8A4B23]">{errors.gdpr_consent.message}</p>}
+                </div>
+                <p className="text-sm leading-6 text-[#1F2937]/70">Nous répondrons à votre message dans les plus brefs délais.</p>
                 <div className="flex flex-wrap items-center gap-4"><motion.button whileHover={{ y: -2 }} disabled={isSubmitting} type="submit" className="rounded-full bg-[#8A4B23] px-6 py-3 font-semibold text-white transition hover:bg-[#6D3918] disabled:opacity-60">{isSubmitting ? 'Envoi...' : 'Envoyer'}</motion.button>{feedback && <p className="text-sm text-[#8A4B23]">{feedback}</p>}</div>
               </form>
             </div>

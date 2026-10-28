@@ -22,9 +22,9 @@ const timeline = [
 ]
 
 const team = [
-  { name: 'Karim Ait El Mouden', role: 'Président directeur', text: 'Pilote stratégique et garant de la qualité du cabinet.' },
-  { name: 'Nadia El Amrani', role: 'Directrice qualité', text: 'Spécialiste audit, conformité et systèmes de management.' },
-  { name: 'Youssef Bensaid', role: 'Responsable formation', text: 'Conçoit des parcours de formation adaptés aux réalités métier.' }
+  { role: 'Président directeur', text: 'Pilote stratégique et garant de la qualité du cabinet.' },
+  { role: 'Directrice qualité', text: 'Spécialiste audit, conformité et systèmes de management.' },
+  { role: 'Responsable formation', text: 'Conçoit des parcours de formation adaptés aux réalités métier.' }
 ]
 
 const About = () => {
@@ -49,12 +49,12 @@ const About = () => {
           </div>
         </section>
 
-        <section className="px-6 py-12 lg:px-8">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="rounded-[2rem] border border-[#8A4B23]/10 bg-[#1F2937] p-8 text-white">
+        <section className="px-6 py-8 lg:px-8">
+          <div className="mx-auto grid max-w-7xl items-stretch gap-8 lg:grid-cols-2">
+            <div className="rounded-[2rem] border border-[#8A4B23]/10 bg-white p-8 shadow-[0_30px_100px_-40px_rgba(31,41,55,0.2)]">
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#8A4B23]">Notre mission</p>
-              <h2 className="mt-4 text-3xl font-semibold">Créer des organisations plus solides et plus performantes</h2>
-              <p className="mt-5 text-sm leading-7 text-white/70">Nous proposons des solutions adaptées à chaque contexte pour renforcer la conformité, l’efficacité opérationnelle et la culture qualité au sein des entreprises.</p>
+              <h2 className="mt-4 text-3xl font-semibold text-[#1F2937]">Créer des organisations plus solides et plus performantes</h2>
+              <p className="mt-5 text-sm leading-7 text-[#1F2937]/70">Nous proposons des solutions adaptées à chaque contexte pour renforcer la conformité, l’efficacité opérationnelle et la culture qualité au sein des entreprises.</p>
             </div>
             <div className="rounded-[2rem] border border-[#8A4B23]/10 bg-white p-8 shadow-[0_30px_100px_-40px_rgba(31,41,55,0.2)]">
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#8A4B23]">Notre vision</p>
@@ -64,7 +64,7 @@ const About = () => {
           </div>
         </section>
 
-        <section className="px-6 py-16 lg:px-8">
+        <section className="px-6 py-10 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#8A4B23]">Nos valeurs</p>
@@ -92,12 +92,11 @@ const About = () => {
             </div>
             <div className="grid gap-6 lg:grid-cols-3">
               {team.map((member) => (
-                <motion.div key={member.name} whileHover={{ y: -6 }} className="rounded-[1.75rem] border border-[#8A4B23]/10 bg-white p-8 shadow-sm">
+                <motion.div key={member.role} whileHover={{ y: -6 }} className="rounded-[1.75rem] border border-[#8A4B23]/10 bg-white p-8 shadow-sm">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#8A4B23]/10 text-[#8A4B23]">
                     <BriefcaseBusiness size={20} />
                   </div>
-                  <h3 className="mt-6 text-xl font-semibold text-[#1F2937]">{member.name}</h3>
-                  <p className="mt-2 text-sm font-semibold uppercase tracking-[0.3em] text-[#8A4B23]">{member.role}</p>
+                  <h3 className="mt-6 text-xl font-semibold text-[#1F2937]">{member.role}</h3>
                   <p className="mt-4 text-sm leading-7 text-[#1F2937]/70">{member.text}</p>
                 </motion.div>
               ))}
